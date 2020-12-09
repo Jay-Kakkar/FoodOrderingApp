@@ -10,6 +10,6 @@ interface LoginDataDao {
     suspend fun insert(loginData: LoginData)
 
     @Query("SELECT * FROM LoginData_table WHERE Email=:key")
-    suspend fun get(key: Long): LoginData?
+    suspend fun get(key: String): LoginData?
 
 }

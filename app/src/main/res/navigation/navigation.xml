@@ -17,5 +17,38 @@
         android:id="@+id/login"
         android:name="com.example.foodato.Login"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_signIn2"
+            app:destination="@id/signIn2" />
+        <action
+            android:id="@+id/action_login_to_signUp2"
+            app:destination="@id/signUp2" />
+    </fragment>
+    <fragment
+        android:id="@+id/signIn2"
+        android:name="com.example.foodato.SignIn.SignIn"
+        android:label="SignIn"
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/action_signIn2_to_signUp2"
+            app:destination="@id/signUp2" />
+        <action
+            android:id="@+id/action_signIn2_to_menu"
+            app:destination="@id/menu" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp2"
+        android:name="com.example.foodato.SignUp.SignUp"
+        android:label="SignUp"
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_signUp2_to_signIn2"
+            app:destination="@id/signIn2" />
+    </fragment>
+    <fragment
+        android:id="@+id/menu"
+        android:name="com.example.foodato.Menu"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" />
 </navigation>
