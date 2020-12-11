@@ -12,8 +12,8 @@ class signInViewModelFactory (
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SignUpViewModel::class.java)) {
-            return SignUpViewModel(dataSource, application) as T
+        if (modelClass.isAssignableFrom(SignInViewModel::class.java)) {
+            return SignInViewModel(dataSource, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

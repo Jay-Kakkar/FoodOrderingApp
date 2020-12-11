@@ -20,7 +20,9 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_login_to_signIn2"
-            app:destination="@id/signIn2" />
+            app:destination="@id/signIn2"
+            app:popUpTo="@id/signIn2"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_login_to_signUp2"
             app:destination="@id/signUp2" />
@@ -33,9 +35,6 @@
         <action
             android:id="@+id/action_signIn2_to_signUp2"
             app:destination="@id/signUp2" />
-        <action
-            android:id="@+id/action_signIn2_to_menu"
-            app:destination="@id/menu" />
     </fragment>
     <fragment
         android:id="@+id/signUp2"
@@ -47,8 +46,9 @@
             app:destination="@id/signIn2" />
     </fragment>
     <fragment
-        android:id="@+id/menu"
-        android:name="com.example.foodato.Menu"
-        android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" />
+        android:id="@+id/homeScreen"
+        android:name="com.example.foodato.home.HomeScreen"
+        android:label="HomeScreen"
+        tools:layout="@layout/fragment_home_screen"/>
+
 </navigation>

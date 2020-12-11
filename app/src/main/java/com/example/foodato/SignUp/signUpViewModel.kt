@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SignUpViewModel(val dataSource: LoginDataDao,application: Application) : ViewModel() {
+class SignUpViewModel(val dataSource: LoginDataDao, application: Application) : ViewModel() {
     fun insertData(
         name: String,
         username: String,

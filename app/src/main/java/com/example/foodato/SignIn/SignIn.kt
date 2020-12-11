@@ -25,15 +25,15 @@ class SignIn : Fragment() {
         super.onCreate(savedInstanceState)
         val application = requireNotNull(this.activity).application
         val dataSource = FoodatoDatabaseBuild.getInstance(application).loginDataDao
+//
+//        activity?.onBackPressedDispatcher?.addCallback(this,object :OnBackPressedCallback(true){
+//            override fun handleOnBackPressed() {
+//                signInBinding.editTextTextEmailAddress.text.clear()
+//                signInBinding.editTextTextPassword.text.clear()
+//            }
+//        })
 
-        activity?.onBackPressedDispatcher?.addCallback(this,object :OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                signInBinding.editTextTextEmailAddress.text.clear()
-                signInBinding.editTextTextPassword.text.clear()
-            }
-        })
-
-        val viewModelFactory = signUpViewModelFactory(dataSource, application)
+        val viewModelFactory = signInViewModelFactory(dataSource, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(SignInViewModel::class.java)
     }
 
@@ -76,7 +76,7 @@ var pass: String? =null
                     pass=it
                     if (password == it) {
                         Toast.makeText(context, "Signed in", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_signIn2_to_menu)
+//                        findNavController().navigate(R.id.action_signIn2_to_home_screen)
                     } else {
                         Toast.makeText(context, "Entered password is wrong", Toast.LENGTH_SHORT)
                             .show()

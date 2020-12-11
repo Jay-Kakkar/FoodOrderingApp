@@ -18,7 +18,7 @@ class Login : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         loginBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
-        loginBinding.imageView2.setBlur(4)
+//        loginBinding.imageView2.setBlur(4)
         loginBinding.signIn.setOnClickListener {
             findNavController().navigate(LoginDirections.actionLoginToSignIn2())
         }
