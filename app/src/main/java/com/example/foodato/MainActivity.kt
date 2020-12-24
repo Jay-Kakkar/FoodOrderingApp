@@ -16,20 +16,24 @@
 
 package com.example.foodato
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.loader.content.Loader
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.example.foodato.databinding.ActivityMainBinding
+import com.example.foodato.home.HomeActivity
+import com.example.foodato.home.HomeScreen
 
+
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
 
@@ -39,13 +43,27 @@ class MainActivity : AppCompatActivity() {
             this,
             R.layout.activity_main
         )
-        drawerLayout = binding.drawerLayout
-        var menuButton=binding.imageMenu
-        menuButton.setOnClickListener {
-            drawerLayout.openDrawer(GravityCompat.START)
+//        drawerLayout = binding.drawerLayout
+//        var menuButton = binding.imageMenu
+//        menuButton.setOnClickListener {
+//            drawerLayout.openDrawer(GravityCompat.START)
+//        }
+//        var navigationView = binding.navView
+//        //for colorfull icons
+//        navigationView.itemIconTintList = null
+//
+//        var navController = Navigation.findNavController(this, R.id.navHost)
+//        NavigationUI.setupWithNavController(navigationView, navController)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val Islogin = prefs.getBoolean("Islogin", false)
+        if (Islogin) {   // condition true means user is already login
+            Log.e(this.toString(),"HHHHHHHHHHHHHHHHHHHHH")
+            var intent=Intent(this,HomeActivity::class.java)
+            startActivity(intent)
         }
-        var navigationView=binding.navView
-        //for colorfull icons
-        navigationView.itemIconTintList=null
     }
 }

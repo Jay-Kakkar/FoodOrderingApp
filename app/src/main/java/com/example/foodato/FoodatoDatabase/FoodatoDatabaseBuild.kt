@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
 
-@Database(entities = [LoginData::class], version = 1, exportSchema = false)
+@Database(entities = [LoginData::class], version = 3, exportSchema = false)
 
 abstract class FoodatoDatabaseBuild: RoomDatabase() {
     abstract val loginDataDao:LoginDataDao

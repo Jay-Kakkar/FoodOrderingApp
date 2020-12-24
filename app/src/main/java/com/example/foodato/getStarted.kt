@@ -23,7 +23,7 @@ class getStarted : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         startedBinding = DataBindingUtil.inflate(inflater, R.layout.started, container, false)
-        startedBinding.imageView2.setBlur(4)
+//        startedBinding.imageView2.setBlur(4)
         startedBinding.button.setOnClickListener {
             findNavController().navigate(getStartedDirections.actionGetStartedToLogin())
         }

@@ -7,12 +7,14 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Home"
-            />
+            android:title="Home" />
         <item
             android:id="@+id/nav_menu_categoriess"
-            android:title="Menu Categories"
-            android:icon="@drawable/ic_menu_categories"/>
-
+            android:icon="@drawable/ic_menu_categories"
+            android:title="Menu Categories" />
+        <item
+            android:id="@+id/nav_sign_out"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="Sign out" />
     </group>
 </menu>

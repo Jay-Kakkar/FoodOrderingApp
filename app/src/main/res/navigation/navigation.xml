@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/getStarted">
+    app:startDestination="@id/login">
     <fragment
         android:id="@+id/getStarted"
         android:name="com.example.foodato.getStarted"
@@ -45,10 +45,5 @@
             android:id="@+id/action_signUp2_to_signIn2"
             app:destination="@id/signIn2" />
     </fragment>
-    <fragment
-        android:id="@+id/homeScreen"
-        android:name="com.example.foodato.home.HomeScreen"
-        android:label="HomeScreen"
-        tools:layout="@layout/fragment_home_screen"/>
 
 </navigation>

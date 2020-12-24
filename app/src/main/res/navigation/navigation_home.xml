@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_home"
+    app:startDestination="@id/nav_home">
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.foodato.home.HomeScreen"
+        android:label="HomeScreen"
+        tools:layout="@layout/fragment_home_screen"/>
+    <fragment
+        android:id="@+id/nav_menu_categoriess"
+        android:name="com.example.foodato.MenuCategories.MenuCategories"
+        android:label="fragment_menu_categories"
+        tools:layout="@layout/fragment_menu_categories" />
+    <fragment
+        android:id="@+id/nav_sign_out"
+        android:name="com.example.foodato.SignOut"
+        android:label="fragment_sign_out"
+        tools:layout="@layout/fragment_sign_out" >
+        <action
+            android:id="@+id/action_nav_sign_out_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+</navigation>
