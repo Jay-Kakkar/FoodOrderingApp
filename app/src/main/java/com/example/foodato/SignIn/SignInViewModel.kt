@@ -18,7 +18,10 @@ class SignInViewModel(val dataSource: LoginDataDao, application: Application) : 
     val _password: LiveData<String>
         get() = password
 
-    fun getCurrentUserData(userEmail: String, userPassword: String) {
+    var usernamePref=MutableLiveData<String>()
+    val _usernamePref:LiveData<String>
+    get() = usernamePref
+    fun getCurrentUserData(userEmail: String) {
         viewModelScope.launch {
 //           var currentUserData= dataSource.get(userEmail)
 //            password.value=currentUserData?.password
@@ -26,7 +29,11 @@ class SignInViewModel(val dataSource: LoginDataDao, application: Application) : 
 
             val currentUserData = getData(userEmail)
             password.value = currentUserData?.password
+            usernamePref.value=currentUserData?.userName
             Log.e(this.toString(),"33335555555555555555${password.value}")
+
+            Log.e(this.toString(),"33335555555555555555${usernamePref
+                .value}")
 
         }
 

@@ -1,6 +1,7 @@
 package com.example.foodato.SignIn
 
 import android.content.Intent
+import android.content.SharedPreferences.Editor
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
@@ -23,6 +24,7 @@ import com.example.foodato.home.HomeActivity
 class SignIn : Fragment() {
     private lateinit var signInBinding: FragmentSignInBinding
     private lateinit var viewModel: SignInViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val application = requireNotNull(this.activity).application
@@ -53,6 +55,14 @@ class SignIn : Fragment() {
             checkForUser()
 
         }
+        viewModel._usernamePref.observe(viewLifecycleOwner, Observer {
+            var user=it
+            val prefs = PreferenceManager.getDefaultSharedPreferences(context).edit()
+            Log.e(this.toString(), "LOOOOOOOOOOOOOOOOOP$user")
+
+            prefs.putString("username", it)
+                .apply()
+        })
         signInBinding.lifecycleOwner = this
 
         return signInBinding.root
@@ -73,10 +83,9 @@ var pass: String? =null
 
             }
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                    viewModel.getCurrentUserData(email, password)
+                    viewModel.getCurrentUserData(email)
 
-
-                viewModel._password.observe(viewLifecycleOwner, Observer {
+            viewModel._password.observe(viewLifecycleOwner, Observer {
                     pass = it
                     when {
                         it == null -> {
@@ -88,9 +97,11 @@ var pass: String? =null
                         password == it -> {
                             Toast.makeText(context, "Signed in", Toast.LENGTH_SHORT).show()
 //                            viewModel.update(true, email)
-                            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-                            prefs.edit().putBoolean("Islogin", true).apply()
-                            var intent= Intent(activity,HomeActivity::class.java)
+                            val prefs = PreferenceManager.getDefaultSharedPreferences(context).edit()
+                            prefs.putBoolean("Islogin", true)
+                                .apply()
+
+                            var intent = Intent(activity, HomeActivity::class.java)
                             startActivity(intent)
                         }
                         else -> {

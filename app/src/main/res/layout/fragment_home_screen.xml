@@ -2,35 +2,127 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    app:menu="@menu/home_screen_menu"
+    xmlns:tools="http://schemas.android.com/tools"    >
 
-    >
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.navigation.HomeScreen"
- >
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        tools:ignore="MissingConstraints"
-        android:orientation="horizontal"
-        />
+        android:layout_height="match_parent"
+        tools:context=".home.HomeScreen"
+        >
 
-    <TextView
-        android:id="@+id/home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="jay"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints" />
+
+        <!--    <TextView-->
+        <!--        android:id="@+id/home"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:text="jay"-->
+        <!--        android:textSize="30sp"-->
+        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--        app:layout_constraintEnd_toEndOf="parent"-->
+        <!--        app:layout_constraintStart_toStartOf="parent"-->
+        <!--        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />-->
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/starter"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/starters"
+            app:layout_constraintBottom_toTopOf="@+id/veg"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            tools:layout_editor_absoluteX="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Starters"
+            android:textAllCaps="true"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/starter"
+            app:layout_constraintEnd_toEndOf="@+id/starter"
+            app:layout_constraintStart_toStartOf="@+id/starter"
+            app:layout_constraintTop_toTopOf="@+id/starter" />
+
+        <ImageView
+            android:id="@+id/veg"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/veg"
+            app:layout_constraintBottom_toTopOf="@+id/nonveg"
+            app:layout_constraintTop_toBottomOf="@+id/starter"
+             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Veg"
+            android:textAllCaps="true"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/veg"
+            app:layout_constraintEnd_toEndOf="@+id/veg"
+            app:layout_constraintStart_toStartOf="@+id/veg"
+            app:layout_constraintTop_toTopOf="@+id/veg" />
+        <ImageView
+            android:id="@+id/nonveg"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/non_veg"
+            app:layout_constraintBottom_toTopOf="@+id/dessert"
+            app:layout_constraintTop_toBottomOf="@+id/veg"
+             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Non veg"
+            android:textAllCaps="true"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/nonveg"
+            app:layout_constraintEnd_toEndOf="@+id/nonveg"
+            app:layout_constraintStart_toStartOf="@+id/nonveg"
+            app:layout_constraintTop_toTopOf="@+id/nonveg" />
+        <ImageView
+            android:id="@+id/dessert"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dessert"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nonveg"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dessert"
+            android:textAllCaps="true"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/dessert"
+            app:layout_constraintEnd_toEndOf="@+id/dessert"
+            app:layout_constraintStart_toStartOf="@+id/dessert"
+            app:layout_constraintTop_toTopOf="@+id/dessert" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

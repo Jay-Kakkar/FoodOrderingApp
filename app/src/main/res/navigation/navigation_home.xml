@@ -8,7 +8,20 @@
         android:id="@+id/nav_home"
         android:name="com.example.foodato.home.HomeScreen"
         android:label="HomeScreen"
-        tools:layout="@layout/fragment_home_screen"/>
+        tools:layout="@layout/fragment_home_screen">
+        <action
+            android:id="@+id/action_nav_home_to_starters"
+            app:destination="@id/starters" />
+        <action
+            android:id="@+id/action_nav_home_to_vegFood"
+            app:destination="@id/vegFood" />
+        <action
+            android:id="@+id/action_nav_home_to_nonVegFood"
+            app:destination="@id/nonVegFood" />
+        <action
+            android:id="@+id/action_nav_home_to_dessert2"
+            app:destination="@id/dessert2" />
+    </fragment>
     <fragment
         android:id="@+id/nav_menu_categoriess"
         android:name="com.example.foodato.MenuCategories.MenuCategories"
@@ -23,4 +36,24 @@
             android:id="@+id/action_nav_sign_out_to_nav_home"
             app:destination="@id/nav_home" />
     </fragment>
+    <fragment
+        android:id="@+id/starters"
+        android:name="com.example.foodato.Starters"
+        android:label="fragment_starters"
+        tools:layout="@layout/fragment_starters" />
+    <fragment
+        android:id="@+id/vegFood"
+        android:name="com.example.foodato.VegFood"
+        android:label="fragment_veg_food"
+        tools:layout="@layout/fragment_veg_food" />
+    <fragment
+        android:id="@+id/nonVegFood"
+        android:name="com.example.foodato.NonVegFood"
+        android:label="fragment_non_veg_food"
+        tools:layout="@layout/fragment_non_veg_food" />
+    <fragment
+        android:id="@+id/dessert2"
+        android:name="com.example.foodato.Dessert"
+        android:label="fragment_dessert"
+        tools:layout="@layout/fragment_dessert" />
 </navigation>
