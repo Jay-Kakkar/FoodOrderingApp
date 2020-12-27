@@ -38,12 +38,12 @@
     </fragment>
     <fragment
         android:id="@+id/starters"
-        android:name="com.example.foodato.Starters"
+        android:name="com.example.foodato.Starters.Starters"
         android:label="fragment_starters"
         tools:layout="@layout/fragment_starters" />
     <fragment
         android:id="@+id/vegFood"
-        android:name="com.example.foodato.VegFood"
+        android:name="com.example.foodato.Veg.VegFood"
         android:label="fragment_veg_food"
         tools:layout="@layout/fragment_veg_food" />
     <fragment
