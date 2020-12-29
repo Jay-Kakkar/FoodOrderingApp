@@ -1,30 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!--<androidx.appcompat.widget.Toolbar-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="?actionBarSize"/>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+
+        android:orientation="horizontal">
+
+
+
 
         <ImageView
-            android:id="@+id/listveg"
-            android:layout_width="160dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
+            android:id="@+id/listVegFoodImage"
+            android:layout_width="172dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:paddingEnd="5dp"
             android:scaleType="centerCrop"
             android:src="@drawable/veg"
-            app:layout_constraintBottom_toTopOf="@id/startername"
+            app:layout_constraintBottom_toTopOf="@id/vegname"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
+            app:layout_constraintTop_toBottomOf="parent" />
 
         <TextView
-            android:id="@+id/startername"
+            android:id="@+id/vegname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginBottom="25dp"
             android:text="Name of item"
             android:textColor="#000000"
             android:textSize="16sp"
@@ -32,37 +43,40 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/listveg" />
+            app:layout_constraintTop_toBottomOf="@id/listVegFoodImage" />
 
         <TextView
             android:id="@+id/addItem"
             android:layout_width="160dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginStart="12dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/box"
             android:backgroundTint="#4fc939"
             android:gravity="center_vertical"
-            android:paddingStart="50dp"
+            android:padding="12dp"
             android:text="Add"
             android:textColor="#ffffff"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/listVegFoodImage"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/startername" />
+            app:layout_constraintTop_toBottomOf="@+id/vegname" />
 
         <TextView
             android:id="@+id/price"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="\u20B9345"
-            android:textColor="#ffffff"
-            android:textSize="10sp"
             android:layout_marginEnd="10dp"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/addItem"
             app:layout_constraintEnd_toEndOf="@+id/addItem"
             app:layout_constraintTop_toTopOf="@+id/addItem" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

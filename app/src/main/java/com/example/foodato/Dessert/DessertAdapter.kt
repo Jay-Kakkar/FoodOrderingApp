@@ -1,14 +1,15 @@
-package com.example.foodato.Starters
+package com.example.foodato.Dessert
 
-import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.foodato.databinding.StartersListBinding
+import com.example.foodato.Veg.VegFoodAdapter
+import com.example.foodato.Veg.vegFoodData
+import com.example.foodato.databinding.DessertListBinding
+import com.example.foodato.databinding.VegListBinding
 
-class StartersAdapter(private val data:ArrayList<StartersData>) : RecyclerView.Adapter<StartersAdapter.ViewHolder>() {
+class DessertAdapter (private val data:ArrayList<DessertData>) : RecyclerView.Adapter<DessertAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,23 +25,22 @@ class StartersAdapter(private val data:ArrayList<StartersData>) : RecyclerView.A
         holder.bind(item)
     }
 
-    class ViewHolder(var binding: StartersListBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(var binding: DessertListBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        var mImageResourceId = binding.listarter
+        var mImageResourceId = binding.dessertImage
         var mPrice = binding.price
-        var mName = binding.startername
-private var startersData: StartersData? =null
-        fun bind(item: StartersData) {
+        var mName = binding.dessertname
+        fun bind(item: DessertData) {
 
             mImageResourceId.setImageResource(item.getImaageResourceId())
-            mName.text = item.getStarterName()
+            mName.text = item.getDessertName()
             mPrice.text = item.getPrice()
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = StartersListBinding.inflate(layoutInflater, parent, false)
+                val binding = DessertListBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }

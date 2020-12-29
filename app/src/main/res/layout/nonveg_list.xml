@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<!--<androidx.appcompat.widget.Toolbar-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="?actionBarSize"/>-->
+    <!--<androidx.appcompat.widget.Toolbar-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="?actionBarSize"/>-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout"
@@ -15,29 +14,10 @@
         android:orientation="horizontal">
 
 
-        <!--        <LinearLayout-->
-        <!--            android:id="@+id/linearLayout"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="?actionBarSize"-->
-        <!--            android:orientation="horizontal"-->
-
-        <!--            app:layout_constraintBottom_toTopOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent" />-->
-        <!--    <view-->
-
-        <!--        android:id="@+id/view"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="0.7dp"-->
-        <!--        android:layout_marginTop="16dp"-->
-        <!--        app:layout_constraintEnd_toEndOf="parent"-->
-        <!--        app:layout_constraintStart_toStartOf="parent"-->
-        <!--        app:layout_constraintTop_toBottomOf="@id/startername" />-->
 
 
         <ImageView
-            android:id="@+id/listarter"
+            android:id="@+id/listNonVegFoodImage"
             android:layout_width="172dp"
             android:layout_height="150dp"
             android:layout_marginStart="12dp"
@@ -45,14 +25,14 @@
             android:layout_marginBottom="16dp"
             android:paddingEnd="5dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/starters"
-            app:layout_constraintBottom_toTopOf="@id/startername"
+            android:src="@drawable/non_veg"
+            app:layout_constraintBottom_toTopOf="@id/nonvegname"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
 
         <TextView
-            android:id="@+id/startername"
+            android:id="@+id/nonvegname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -63,7 +43,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/listarter" />
+            app:layout_constraintTop_toBottomOf="@id/listNonVegFoodImage" />
 
         <TextView
             android:id="@+id/addItem"
@@ -81,9 +61,9 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/listarter"
+            app:layout_constraintEnd_toEndOf="@+id/listNonVegFoodImage"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/startername" />
+            app:layout_constraintTop_toBottomOf="@+id/nonvegname" />
 
         <TextView
             android:id="@+id/price"

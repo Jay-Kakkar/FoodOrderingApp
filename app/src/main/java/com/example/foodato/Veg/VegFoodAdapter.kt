@@ -1,14 +1,13 @@
-package com.example.foodato.Starters
+package com.example.foodato.Veg
 
-import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.foodato.databinding.StartersListBinding
+import com.example.foodato.Starters.StartersData
+import com.example.foodato.databinding.VegListBinding
 
-class StartersAdapter(private val data:ArrayList<StartersData>) : RecyclerView.Adapter<StartersAdapter.ViewHolder>() {
+class VegFoodAdapter (private val data:ArrayList<vegFoodData>) : RecyclerView.Adapter<VegFoodAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,23 +23,22 @@ class StartersAdapter(private val data:ArrayList<StartersData>) : RecyclerView.A
         holder.bind(item)
     }
 
-    class ViewHolder(var binding: StartersListBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(var binding: VegListBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        var mImageResourceId = binding.listarter
+        var mImageResourceId = binding.listVegFoodImage
         var mPrice = binding.price
-        var mName = binding.startername
-private var startersData: StartersData? =null
-        fun bind(item: StartersData) {
+        var mName = binding.vegname
+        fun bind(item: vegFoodData) {
 
             mImageResourceId.setImageResource(item.getImaageResourceId())
-            mName.text = item.getStarterName()
+            mName.text = item.getVegFoodName()
             mPrice.text = item.getPrice()
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = StartersListBinding.inflate(layoutInflater, parent, false)
+                val binding = VegListBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }

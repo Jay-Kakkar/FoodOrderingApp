@@ -48,12 +48,12 @@
         tools:layout="@layout/fragment_veg_food" />
     <fragment
         android:id="@+id/nonVegFood"
-        android:name="com.example.foodato.NonVegFood"
+        android:name="com.example.foodato.NonVeg.NonVegFood"
         android:label="fragment_non_veg_food"
         tools:layout="@layout/fragment_non_veg_food" />
     <fragment
         android:id="@+id/dessert2"
-        android:name="com.example.foodato.Dessert"
+        android:name="com.example.foodato.Dessert.Dessert"
         android:label="fragment_dessert"
         tools:layout="@layout/fragment_dessert" />
 </navigation>

@@ -1,14 +1,14 @@
-package com.example.foodato.Starters
+package com.example.foodato.NonVeg
 
-import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
+import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
-import com.example.foodato.databinding.StartersListBinding
+import com.example.foodato.databinding.NonvegListBinding
+import com.example.foodato.databinding.VegListBinding
 
-class StartersAdapter(private val data:ArrayList<StartersData>) : RecyclerView.Adapter<StartersAdapter.ViewHolder>() {
+class NonVegAdapter(private val data:ArrayList<NonVegData>) : RecyclerView.Adapter<NonVegAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,23 +24,22 @@ class StartersAdapter(private val data:ArrayList<StartersData>) : RecyclerView.A
         holder.bind(item)
     }
 
-    class ViewHolder(var binding: StartersListBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(var binding:  NonvegListBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        var mImageResourceId = binding.listarter
+        var mImageResourceId = binding.listNonVegFoodImage
         var mPrice = binding.price
-        var mName = binding.startername
-private var startersData: StartersData? =null
-        fun bind(item: StartersData) {
+        var mName = binding.nonvegname
+        fun bind(item: NonVegData) {
 
             mImageResourceId.setImageResource(item.getImaageResourceId())
-            mName.text = item.getStarterName()
+            mName.text = item.getNonVegFoodName()
             mPrice.text = item.getPrice()
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = StartersListBinding.inflate(layoutInflater, parent, false)
+                val binding = NonvegListBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }
