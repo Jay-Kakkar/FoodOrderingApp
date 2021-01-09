@@ -26,11 +26,55 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayout"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/viewcart"
             app:spanCount="2"
             tools:itemCount="4"
             android:layout_marginEnd="8dp"
             tools:listitem="@layout/nonveg_list" />
+        <TextView
+            android:id="@+id/viewcart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:text="View cart"
+            android:textAllCaps="true"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:background="@drawable/box"
+            android:backgroundTint="#4fc939"
+            app:layout_constraintTop_toBottomOf="@id/recycler"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/total"
 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="12dp"
+            android:text="0"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/viewcart"
+            app:layout_constraintEnd_toEndOf="@id/viewcart"
+            app:layout_constraintTop_toTopOf="@id/viewcart" />
+
+        <TextView
+            android:id="@+id/symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="₹"
+            android:visibility="invisible"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/viewcart"
+            app:layout_constraintEnd_toStartOf="@id/total"
+            app:layout_constraintTop_toTopOf="@id/viewcart" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

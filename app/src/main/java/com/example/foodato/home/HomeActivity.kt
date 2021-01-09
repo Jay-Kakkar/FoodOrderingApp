@@ -16,10 +16,12 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.example.foodato.CartData
 import com.example.foodato.MainActivity
 import com.example.foodato.R
 import com.example.foodato.SignOutDirections
 import com.example.foodato.databinding.ActivityHomeBinding
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_home.*
 
 
@@ -27,7 +29,7 @@ import kotlinx.android.synthetic.main.activity_home.*
 class HomeActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var mHeaderView: View
-
+    private var cartData = ArrayList<CartData>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityHomeBinding>(
@@ -41,6 +43,7 @@ class HomeActivity : AppCompatActivity() {
 //            startActivity(intent)
 //        }
 
+
         drawerLayout = binding.drawerLayout
         var menuButton = binding.imageMenu
         menuButton.setOnClickListener {
@@ -51,7 +54,7 @@ class HomeActivity : AppCompatActivity() {
         val usernamePref = prefs.getString("username", "")
         //setting value in nav header
         val navigationView = binding.navViewHome
-        mHeaderView =  navigationView.getHeaderView(0);
+        mHeaderView = navigationView.getHeaderView(0);
         var textViewUsername = mHeaderView.findViewById<View>(R.id.usernameHello) as TextView
 //        Log.e(this.toString(),"hhhhhhhhhhhhhhhh${usernamePref}")
         textViewUsername.setText("Hello,$usernamePref");
@@ -64,6 +67,18 @@ class HomeActivity : AppCompatActivity() {
         )
         NavigationUI.setupWithNavController(navigationView, navController)
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val appSharedPrefs = PreferenceManager
+            .getDefaultSharedPreferences(this)
+        val prefsEditor = appSharedPrefs.edit()
+        cartData.clear()
+        val gson = Gson()
+        val json: String = gson.toJson(cartData)
+        prefsEditor.putString("Details", json)
+        prefsEditor.apply()
     }
 
 

@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
+import com.example.foodato.Veg.vegFoodData
 import com.example.foodato.databinding.NonvegListBinding
 import com.example.foodato.databinding.VegListBinding
 
-class NonVegAdapter(private val data:ArrayList<NonVegData>) : RecyclerView.Adapter<NonVegAdapter.ViewHolder>() {
+class NonVegAdapter(private val data:ArrayList<NonVegData>,val onClicklistener:Clicklisteners)
+    : RecyclerView.Adapter<NonVegAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,7 +22,9 @@ class NonVegAdapter(private val data:ArrayList<NonVegData>) : RecyclerView.Adapt
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         Log.e(this.toString(),"!!!!!!!!!!!!!!!!!!!!!!!!${item}")
-
+holder.addItem.setOnClickListener {
+    onClicklistener.clickListener(item.getPriceInt(),item.getNonVegFoodName())
+}
         holder.bind(item)
     }
 
@@ -28,6 +32,7 @@ class NonVegAdapter(private val data:ArrayList<NonVegData>) : RecyclerView.Adapt
 
         var mImageResourceId = binding.listNonVegFoodImage
         var mPrice = binding.price
+        var addItem=binding.addItem
         var mName = binding.nonvegname
         fun bind(item: NonVegData) {
 
@@ -47,6 +52,11 @@ class NonVegAdapter(private val data:ArrayList<NonVegData>) : RecyclerView.Adapt
 
     override fun getItemCount(): Int {
         return data.size
+    }
+    class Clicklisteners(val clickListener: (price: Int, starterName: String) -> Unit) {
+        fun onClick(nonveg: NonVegData) {
+            clickListener(nonveg.getPriceInt(), nonveg.getNonVegFoodName())
+        }
     }
 
 }

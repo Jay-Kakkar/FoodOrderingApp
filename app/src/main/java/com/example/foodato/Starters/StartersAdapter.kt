@@ -8,7 +8,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodato.databinding.StartersListBinding
 
-class StartersAdapter(private val data:ArrayList<StartersData>) : RecyclerView.Adapter<StartersAdapter.ViewHolder>() {
+class StartersAdapter(
+    private val data: ArrayList<StartersData>,
+    val onClickListener: Clicklisteners
+) :
+    RecyclerView.Adapter<StartersAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -19,8 +23,10 @@ class StartersAdapter(private val data:ArrayList<StartersData>) : RecyclerView.A
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
-        Log.e(this.toString(),"!!!!!!!!!!!!!!!!!!!!!!!!${item}")
-
+        Log.e(this.toString(), "!!!!!!!!!!!!!!!!!!!!!!!!${item}")
+        holder.addItem.setOnClickListener {
+            onClickListener.clickListener(item.getPriceInt(),item.getStarterName())
+        }
         holder.bind(item)
     }
 
@@ -29,7 +35,8 @@ class StartersAdapter(private val data:ArrayList<StartersData>) : RecyclerView.A
         var mImageResourceId = binding.listarter
         var mPrice = binding.price
         var mName = binding.startername
-private var startersData: StartersData? =null
+        var addItem = binding.addItem
+        private var startersData: StartersData? = null
         fun bind(item: StartersData) {
 
             mImageResourceId.setImageResource(item.getImaageResourceId())
@@ -50,4 +57,11 @@ private var startersData: StartersData? =null
         return data.size
     }
 
+    class Clicklisteners(val clickListener: (price: Int,starterName:String) -> Unit) {
+        fun onClick(starters:StartersData) {
+            clickListener(starters.getPriceInt(),starters.getStarterName())
+        }
+
+
+    }
 }

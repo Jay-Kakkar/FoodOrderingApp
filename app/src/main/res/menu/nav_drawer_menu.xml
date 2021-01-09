@@ -16,5 +16,9 @@
             android:id="@+id/nav_sign_out"
             android:icon="@drawable/ic_baseline_person_24"
             android:title="Sign out" />
+        <item
+            android:title="Cart"
+            android:icon="@drawable/baseline_shopping_cart_24"
+            android:id="@+id/nav_cart"/>
     </group>
 </menu>

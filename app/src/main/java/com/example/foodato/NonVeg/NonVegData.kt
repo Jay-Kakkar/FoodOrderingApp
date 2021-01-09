@@ -19,6 +19,9 @@ class NonVegData {  private var mImageResourceId: Int = 0
     fun getPrice(): String {
         return "₹$mPrice"
     }
+    fun getPriceInt(): Int {
+        return mPrice
+    }
 
     fun getNonVegFoodName(): String {
         return mNonVegFoodName.toString()

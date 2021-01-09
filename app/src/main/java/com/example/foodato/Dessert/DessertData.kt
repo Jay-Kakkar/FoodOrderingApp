@@ -19,6 +19,9 @@ class DessertData  {  private var mImageResourceId: Int = 0
     fun getPrice(): String {
         return "₹$mPrice"
     }
+    fun getPriceInt(): Int {
+        return mPrice
+    }
 
     fun getDessertName(): String {
         return mDessertName.toString()

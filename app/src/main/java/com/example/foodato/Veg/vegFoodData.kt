@@ -20,6 +20,9 @@ class vegFoodData {
     fun getPrice(): String {
         return "₹$mPrice"
     }
+    fun getPriceInt(): Int {
+        return mPrice
+    }
 
     fun getVegFoodName(): String {
         return mVegFoodName.toString()
