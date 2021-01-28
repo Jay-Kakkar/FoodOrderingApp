@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.foodato.CartData
+import com.example.foodato.viewcart.CartData
 import com.example.foodato.R
 import com.example.foodato.databinding.FragmentStartersBinding
 import com.google.gson.Gson
@@ -24,7 +24,6 @@ class Starters : Fragment() {
     private lateinit var adapter: StartersAdapter
     var totalPrice: Int = 0
     var prevPrice = 0
-    private var cartData = ArrayList<CartData>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

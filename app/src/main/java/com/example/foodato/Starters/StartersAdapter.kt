@@ -36,7 +36,6 @@ class StartersAdapter(
         var mPrice = binding.price
         var mName = binding.startername
         var addItem = binding.addItem
-        private var startersData: StartersData? = null
         fun bind(item: StartersData) {
 
             mImageResourceId.setImageResource(item.getImaageResourceId())

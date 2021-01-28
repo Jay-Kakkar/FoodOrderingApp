@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_cart"
-        android:name="com.example.foodato.ViewCart"
+        android:name="com.example.foodato.viewcart.ViewCart"
         android:label="fragment_view_cart"
         tools:layout="@layout/fragment_view_cart" />
 </navigation>

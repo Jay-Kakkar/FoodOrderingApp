@@ -1,4 +1,4 @@
-package com.example.foodato
+package com.example.foodato.viewcart
 
 class CartData {
     private var mPrice: Int = 0

@@ -9,11 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
-import com.example.foodato.CartData
+import com.example.foodato.viewcart.CartData
 import com.example.foodato.R
 
 import com.example.foodato.databinding.FragmentNonVegFoodBinding
-import com.example.foodato.databinding.FragmentVegFoodBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

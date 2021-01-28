@@ -1,8 +1,5 @@
 package com.example.foodato.home
 
-import android.app.AlertDialog
-import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
@@ -13,16 +10,11 @@ import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.example.foodato.CartData
-import com.example.foodato.MainActivity
+import com.example.foodato.viewcart.CartData
 import com.example.foodato.R
-import com.example.foodato.SignOutDirections
 import com.example.foodato.databinding.ActivityHomeBinding
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_home.*
 
 
 @Suppress("DEPRECATION")

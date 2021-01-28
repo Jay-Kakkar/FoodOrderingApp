@@ -1,14 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ViewCart">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/yourBasket"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/emptyCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cart is empty"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/checkout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+
+        <TextView
+            android:id="@+id/yourBasket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Your Basket"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/recycler"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/yourBasket"
+
+            tools:listitem="@layout/view_cart_lsit" />
+
+
+        <TextView
+            android:id="@+id/checkout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/box"
+            android:backgroundTint="#4fc939"
+            android:gravity="center"
+            android:padding="13dp"
+            android:layout_marginTop="16dp"
+            android:text="Checkout"
+            android:textAllCaps="true"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tax" />
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="12dp"
+            android:text="0"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/checkout"
+            app:layout_constraintEnd_toEndOf="@id/checkout"
+            app:layout_constraintTop_toTopOf="@id/checkout" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:visibility="gone"
+
+            android:layout_marginTop="12dp"
+            android:background="#C8C1B9B9"
+            app:layout_constraintBottom_toTopOf="@id/subtotal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recycler" />
+
+        <TextView
+
+            android:id="@+id/subtotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Subtotal"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:visibility="gone"
+
+            app:layout_constraintBottom_toTopOf="@id/tax"
+            app:layout_constraintEnd_toStartOf="@id/subtotalPrice"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view" />
+
+        <TextView
+            android:id="@+id/subtotalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="0"
+            android:visibility="gone"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/tax"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/subtotal"
+            app:layout_constraintTop_toBottomOf="@id/view" />
+
+        <TextView
+            android:id="@+id/tax"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"            android:text="Total Tax"
+            android:visibility="gone"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/checkout"
+            app:layout_constraintEnd_toStartOf="@id/taxprice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subtotal" />
+
+        <TextView
+            android:id="@+id/taxprice"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="0"
+
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/checkout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tax"
+            app:layout_constraintTop_toBottomOf="@id/subtotal" />
+
+        <TextView
+            android:id="@+id/symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="₹"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/checkout"
+            app:layout_constraintEnd_toStartOf="@id/total"
+            app:layout_constraintTop_toTopOf="@id/checkout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
