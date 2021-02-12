@@ -22,11 +22,7 @@
             android:id="@+id/action_nav_home_to_dessert2"
             app:destination="@id/dessert2" />
     </fragment>
-    <fragment
-        android:id="@+id/nav_menu_categoriess"
-        android:name="com.example.foodato.MenuCategories.MenuCategories"
-        android:label="fragment_menu_categories"
-        tools:layout="@layout/fragment_menu_categories" />
+
     <fragment
         android:id="@+id/nav_sign_out"
         android:name="com.example.foodato.SignOut"

@@ -2,6 +2,8 @@
 
 package com.example.foodato.viewcart
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -9,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -19,6 +22,7 @@ import com.example.foodato.databinding.FragmentViewCartBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
+@Suppress("DEPRECATION")
 class ViewCart : Fragment() {
     private lateinit var binding: FragmentViewCartBinding
     private lateinit var adapter: ViewCartAdapter
@@ -70,6 +74,7 @@ class ViewCart : Fragment() {
         binding.recycler.adapter = adapter
         viewModel.arrayData.value = data
 
+
         viewModel._arrayData.observe(viewLifecycleOwner, Observer {
             it.let {
                 adapter.submitList(it)
@@ -87,19 +92,17 @@ class ViewCart : Fragment() {
 
 
     private fun clearValue(price: Int, dishName: String) {
-        var counter=1
-    viewModel._arrayData.observe(this, Observer {
+        viewModel._arrayData.observe(this, Observer {
             basic = ""
             if (it.count() > 0) {
 
                 for (i in it) {
                     if (i.getDishName() == dishName) {
                         Log.e(this.toString(), "JayEEHHHHHHHHHH${i}")
-                        Log.e(this.toString(), "pppppppppppppp$counter")
 
                         it.remove(i)
                         checkoutPricePressCross(price)
-break
+                        break
 
                     } else {
                         finalDishName = i.getDishName()
@@ -127,7 +130,34 @@ break
                     .setType("text/plain").intent
                 binding.checkout.setOnClickListener {
 
-                    startActivity(intent)
+                    var alertDialog = AlertDialog.Builder(context)
+                    alertDialog.setMessage("Do you want to checkout")
+                    alertDialog.setNegativeButton(
+                        "yes",
+                        DialogInterface.OnClickListener { dialog, which ->
+                            val appSharedPrefs = PreferenceManager
+                                .getDefaultSharedPreferences(context)
+                            val prefsEditor = appSharedPrefs.edit()
+
+
+                            prefsEditor.putString("Details", "")
+                            prefsEditor.apply()
+                            startActivity(intent)
+
+                            var data=prefData()
+                            totalPriceSimpleAdd(data)
+                            adapter.submitList(data)
+                            adapter.notifyDataSetChanged()
+
+
+                        })
+                    alertDialog.setPositiveButton(
+                        "no",
+                        DialogInterface.OnClickListener { dialog, which ->
+                        })
+                    alertDialog.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
                 }
                 val appSharedPrefs = PreferenceManager
                     .getDefaultSharedPreferences(context)
@@ -140,6 +170,10 @@ break
                 prefsEditor.putString("Details", json)
                 prefsEditor.apply()
             }
+            else{
+
+            }
+
 
         })
 
@@ -181,6 +215,8 @@ break
     }
 
     fun totalPriceSimpleAdd(details: ArrayList<CartData>) {
+        var intent = Intent(Intent.ACTION_SENDTO);
+
         if (details.isNotEmpty()) {
             details.forEach {
                 prevPrice += it.getPriceInt()
@@ -193,12 +229,9 @@ break
             var finalPrice = prevPrice + tax
             basic += subTotal + "$prevPrice\n" + taxValue + "$tax\n" + totalValue + "${finalPrice}"
             orderDetails += basic
-            var intent = Intent(Intent.ACTION_SENDTO);
             intent = ShareCompat.IntentBuilder.from(requireActivity()).setText(orderDetails)
                 .setType("text/plain").intent
-            binding.checkout.setOnClickListener {
-                startActivity(intent)
-            }
+
             binding.taxprice.text = "₹${tax}"
             binding.subtotalPrice.text = "₹${prevPrice}"
             binding.subtotalPrice.visibility = View.VISIBLE
@@ -224,6 +257,42 @@ break
             binding.taxprice.visibility = View.GONE
             binding.view.visibility = View.GONE
 
+        }
+        binding.checkout.setOnClickListener {
+            if (details.isEmpty()) {
+                Toast.makeText(requireContext(), "Cart is empty", Toast.LENGTH_SHORT).show()
+            } else {
+
+
+                var alertDialog = AlertDialog.Builder(context)
+                alertDialog.setMessage("Do you want to checkout")
+                alertDialog.setNegativeButton(
+                    "yes",
+                    DialogInterface.OnClickListener { dialog, which ->
+                        val appSharedPrefs = PreferenceManager
+                            .getDefaultSharedPreferences(context)
+                        val prefsEditor = appSharedPrefs.edit()
+
+
+                        prefsEditor.putString("Details", "")
+                        prefsEditor.apply()
+
+                        startActivity(intent)
+                        var data = prefData()
+                        totalPriceSimpleAdd(data)
+                        adapter.submitList(data)
+                        adapter.notifyDataSetChanged()
+
+
+                    })
+                alertDialog.setPositiveButton(
+                    "no",
+                    DialogInterface.OnClickListener { dialog, which ->
+                    })
+                val alertDialogBuilder: AlertDialog = alertDialog.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+            }
         }
     }
 
