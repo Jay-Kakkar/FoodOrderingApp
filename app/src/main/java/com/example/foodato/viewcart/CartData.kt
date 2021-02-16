@@ -8,7 +8,6 @@ class CartData {
         mPrice = price
         mDishName = DishName
     }
-
     constructor()
 
 

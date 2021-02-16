@@ -3,6 +3,9 @@
 package com.example.foodato.viewcart
 
 import android.app.AlertDialog
+import android.app.job.JobInfo
+import android.app.job.JobScheduler
+import android.content.*
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -12,11 +15,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity.*
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.foodato.NotificationJobScheduler
 import com.example.foodato.R
 import com.example.foodato.databinding.FragmentViewCartBinding
 import com.google.gson.Gson
@@ -24,10 +29,13 @@ import com.google.gson.reflect.TypeToken
 
 @Suppress("DEPRECATION")
 class ViewCart : Fragment() {
+    private var JobId = 0
     private lateinit var binding: FragmentViewCartBinding
     private lateinit var adapter: ViewCartAdapter
     private lateinit var data: ArrayList<CartData>
     private lateinit var viewModel: ViewCartViewModel
+    private lateinit var scheduler: JobScheduler
+
     var orderDetails = "Order Details\n"
     private lateinit var finalDishName: String
     private lateinit var dishPrice: String
@@ -120,7 +128,7 @@ class ViewCart : Fragment() {
                 }
                 adapter.submitList(it)
                 adapter.notifyDataSetChanged()
-                basic += subTotal + "$prevPrice\n" + taxValue + "$tax\n" + totalValue + "${prevPrice + tax}"
+                basic += subTotal + " ₹$prevPrice\n" + taxValue + " ₹$tax\n" + totalValue + " ₹${prevPrice+tax}"
                 Log.e(this.toString(), "Kakkar${basic}")
                 var orderDetails = "Order Details\n"
 
@@ -139,12 +147,14 @@ class ViewCart : Fragment() {
                                 .getDefaultSharedPreferences(context)
                             val prefsEditor = appSharedPrefs.edit()
 
+//                            NotificationJobScheduler().scheduleJob()
+//scheduleJob()
 
-                            prefsEditor.putString("Details", "")
+                            prefsEditor.putString ("Details", "")
                             prefsEditor.apply()
                             startActivity(intent)
 
-                            var data=prefData()
+                            var data = prefData()
                             totalPriceSimpleAdd(data)
                             adapter.submitList(data)
                             adapter.notifyDataSetChanged()
@@ -169,8 +179,7 @@ class ViewCart : Fragment() {
 
                 prefsEditor.putString("Details", json)
                 prefsEditor.apply()
-            }
-            else{
+            } else {
 
             }
 
@@ -179,6 +188,7 @@ class ViewCart : Fragment() {
 
 
     }
+
 
     fun checkoutPricePressCross(price: Int) {
 
@@ -227,7 +237,7 @@ class ViewCart : Fragment() {
 
             tax = 0.05 * prevPrice
             var finalPrice = prevPrice + tax
-            basic += subTotal + "$prevPrice\n" + taxValue + "$tax\n" + totalValue + "${finalPrice}"
+            basic += subTotal + " ₹$prevPrice\n" + taxValue + " ₹$tax\n" + totalValue + " ₹${finalPrice}"
             orderDetails += basic
             intent = ShareCompat.IntentBuilder.from(requireActivity()).setText(orderDetails)
                 .setType("text/plain").intent
@@ -277,6 +287,10 @@ class ViewCart : Fragment() {
                         prefsEditor.putString("Details", "")
                         prefsEditor.apply()
 
+                        scheduleJob()
+//                        NotificationJobScheduler().scheduleJob()
+//NotificationJobScheduler()
+
                         startActivity(intent)
                         var data = prefData()
                         totalPriceSimpleAdd(data)
@@ -314,4 +328,31 @@ class ViewCart : Fragment() {
         return detail
 
     }
+
+    fun scheduleJob() {
+
+        val netWorkGroup = JobInfo.NETWORK_TYPE_UNMETERED
+        scheduler = activity?.getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler
+//component name is used to associate Job service with job info
+        var componentName = ComponentName(requireActivity().packageName, NotificationJobScheduler::class.java.name)
+//        Log.e(this.toString(),"333333333333333333${componentName}")
+
+        val builder=JobInfo.Builder(JobId, componentName)
+            .setRequiredNetworkType(netWorkGroup)
+            .setRequiresDeviceIdle(true)
+        builder.setOverrideDeadline(( 10000).toLong());//1000.toLong=1second
+
+        Log.e(this.toString(),"22222222222222222222$builder")
+
+        val myJobInfo=builder.build()
+        scheduler.schedule(myJobInfo)
+        Toast.makeText(
+            activity, "Job Scheduled, job will run when " +
+                    "the constraints are met.", Toast.LENGTH_SHORT
+        ).show()
+    }
+
+
+
+
 }
